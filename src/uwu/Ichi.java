@@ -11,7 +11,7 @@ import mindustry.ui.dialogs.*;
 
 public class Ichi extends Mod{
 
-    public ExampleJavaMod(){
+    public Ichi(){
         Events.on(ClientLoadEvent.class, e -> {
             Vars.ui.listfrag = new CustomPlayerListFragment();
         });
