@@ -1,8 +1,8 @@
-name: "example-java-mod"
-displayName: "Example Java Mod"
-author: "Anuke"
-main: "example.ExampleJavaMod"
-description: "A jar mod."
-version: 1.0
-minGameVersion: 105
+name: "sssmlam"
+displayName: "ShizaShizaShiza.ml admin mod"
+author: "owler"
+main: "uwu.Ichi"
+description: "hentai"
+version: 0.1
+minGameVersion: 120
 
