@@ -13,6 +13,7 @@ import mindustry.graphics.*;
 import mindustry.net.*;
 import mindustry.net.Packets.*;
 import mindustry.ui.*;
+import mindustry.ui.fragment.*;
 
 import static mindustry.Vars.*;
 
@@ -72,7 +73,7 @@ public class CustomPlayerListFragment extends PlayerListFragment{
 
         rebuild();
     }
-    @Override
+    
     public void rebuild(){
         content.clear();
 
@@ -172,7 +173,7 @@ public class CustomPlayerListFragment extends PlayerListFragment{
 
         content.marginBottom(5);
     }
-    @Override
+    
     public void toggle(){
         visible = !visible;
         if(visible){
