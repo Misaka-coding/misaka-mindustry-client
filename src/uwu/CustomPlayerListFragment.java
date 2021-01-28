@@ -85,7 +85,7 @@ public class CustomPlayerListFragment extends PlayerListFragment{
 
         players.sort(Structs.comps(Structs.comparing(Player::team), Structs.comparingBool(p -> !p.admin)));
 
-        for(var user : players){
+        for(Player user : players){
             found = true;
             NetConnection connection = user.con;
 
