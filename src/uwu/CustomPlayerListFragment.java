@@ -13,7 +13,7 @@ import mindustry.graphics.*;
 import mindustry.net.*;
 import mindustry.net.Packets.*;
 import mindustry.ui.*;
-import mindustry.ui.fragment.*;
+import mindustry.ui.fragments.*;
 
 import static mindustry.Vars.*;
 
