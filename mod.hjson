@@ -5,4 +5,5 @@ main: "uwu.Ichi"
 description: "hentai"
 version: 0.1
 minGameVersion: 120
+hidden: true
 
