@@ -13,7 +13,7 @@ import mindustry.ui.dialogs.*;
 
 public class Ichi extends Mod{
     public Ichi(){
-        Events.on(PlayerConnect.class, e -> {
+        Events.on(WithdrawEvent.class, e -> {
             new BanDialog(e.player);
         });
     }
