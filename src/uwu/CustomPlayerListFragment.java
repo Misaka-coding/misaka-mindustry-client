@@ -90,7 +90,7 @@ public class CustomPlayerListFragment extends PlayerListFragment {
             NetConnection connection = user.con;
 
             if(connection == null && net.server() && !user.isLocal()) return;
-            if(sField.getText().length() > 0 && !user.name().toLowerCase().contains(sField.getText().toLowerCase()) && !Strings.stripColors(user.name().toLowerCase()).contains(sField.getText().toLowerCase())) return;
+            //if(sField.getText().length() > 0 && !user.name().toLowerCase().contains(sField.getText().toLowerCase()) && !Strings.stripColors(user.name().toLowerCase()).contains(sField.getText().toLowerCase())) return;
 
             Table button = new Table();
             button.left();
