@@ -90,7 +90,7 @@ public class CustomPlayerListFragment extends PlayerListFragment {
             NetConnection connection = user.con;
 
             if(connection == null && net.server() && !user.isLocal()) return;
-            //if(sField.getText().length() > 0 && !user.name().toLowerCase().contains(sField.getText().toLowerCase()) && !Strings.stripColors(user.name().toLowerCase()).contains(sField.getText().toLowerCase())) return;
+            if(sField.getText().length() > 0 && !user.name().toLowerCase().contains(sField.getText().toLowerCase()) && !Strings.stripColors(user.name().toLowerCase()).contains(sField.getText().toLowerCase())) return;
 
             Table button = new Table();
             button.left();
@@ -126,7 +126,7 @@ public class CustomPlayerListFragment extends PlayerListFragment {
                     t.defaults().size(bs);
 
                     t.button(Icon.hammer, Styles.clearPartiali,
-                            () -> ui.showConfirm("@confirm", Core.bundle.format("confirmban",  user.name()), () -> Call.adminRequest(user, AdminAction.ban)));
+                            () -> ui.showConfirm("@confirm", Core.bundle.format("confirmban",  user.name()), () -> new BanDialog().show()));
                     t.button(Icon.cancel, Styles.clearPartiali,
                             () -> ui.showConfirm("@confirm", Core.bundle.format("confirmkick",  user.name()), () -> Call.adminRequest(user, AdminAction.kick)));
 
@@ -180,7 +180,7 @@ public class CustomPlayerListFragment extends PlayerListFragment {
             rebuild();
         }else{
             Core.scene.setKeyboardFocus(null);
-            //sField.clearText();
+            sField.clearText();
         }
     }
 
