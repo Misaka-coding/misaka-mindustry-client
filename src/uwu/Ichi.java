@@ -1,6 +1,7 @@
 package uwu;
 
 import arc.*;
+import arc.scene.ui.Dialog;
 import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
@@ -22,12 +23,13 @@ public class Ichi extends Mod{
     public static void showTempBanDialog(Player player){
         time="60";
         reason="R U L E S";
-        BaseDialog dialog=new BaseDialog("BAN");
+        Dialog dialog=new Dialog("BAN");
         dialog.addCloseButton();
         dialog.add(player.name).row();
         dialog.add(player.con.address);
-        dialog.cont.field(timeGetter(),text->timeSetter(text)).addInputDialog().get();
-        dialog.cont.field(reasonGetter(),text->reasonSetter(text)).addInputDialog().get();
+        dialog.cont.field(time,text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
+        dialog.cont.row();
+        dialog.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
         dialog.button("@ok",()->Call.sendChatMessage("/ban "+time +" "+ player.con().address+ " "+reason));
     }
     public static void timeSetter(String s){
