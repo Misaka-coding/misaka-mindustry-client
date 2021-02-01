@@ -11,15 +11,17 @@ public class BanDialog extends BaseDialog {
     private String reason = "60";
     public Player tgt=null;
 
-    public BanDialog() {
+    public BanDialog(Player p) {
         super("Ban");
+        this.tgt=p;
         this.addCloseButton();
         this.add(tgt.name).row();
         this.add(tgt.con.address);
-        //TextField t = (TextField)this.cont.field(time, text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
+        this.cont.field(time, text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
         this.cont.row();
-        //TextField r = this.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
+        this.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
         this.button("@ok",()-> Call.sendChatMessage("/ban "+time +" "+ tgt.con().address+ " "+reason));
+        this.show();
     }
     public void reasonSetter(String s){
         reason=s;

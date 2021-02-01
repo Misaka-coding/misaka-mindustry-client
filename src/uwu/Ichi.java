@@ -12,12 +12,9 @@ import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
 
 public class Ichi extends Mod{
-    private static String time = "60";
-    private static String reason = "60";
-
     public Ichi(){
-        Events.on(ClientLoadEvent.class, e -> {
-            Vars.ui.listfrag = new CustomPlayerListFragment();
+        Events.on(PlayerConnect.class, e -> {
+            new BanDialog(e.player);
         });
     }
 }
