@@ -26,8 +26,8 @@ public class Ichi extends Mod{
         dialog.addCloseButton();
         dialog.add(player.name).row();
         dialog.add(player.con.address);
-        dialog.field(timeGetter(),text->timeSetter(text));
-        dialog.field(reasonGetter(),text->reasonSetter(text)).addInputDialog().get();
+        dialog.cont.field(timeGetter(),text->timeSetter(text)).addInputDialog().get();
+        dialog.cont.field(reasonGetter(),text->reasonSetter(text)).addInputDialog().get();
         dialog.button("@ok",()->Call.sendChatMessage("/ban "+time +" "+ player.con().address+ " "+reason));
     }
     public static void timeSetter(String s){
