@@ -126,7 +126,10 @@ public class CustomPlayerListFragment extends PlayerListFragment{
                     t.defaults().size(bs);
 
                     t.button(Icon.hammer, Styles.clearPartiali,
-                     () -> new BanDialog().show());
+                     () ->
+                             //new BanDialog().show()
+                     {int e =0;}
+                    );
                     t.button(Icon.cancel, Styles.clearPartiali,
                     () -> ui.showConfirm("@confirm", Core.bundle.format("confirmkick",  user.name()), () -> Call.adminRequest(user, AdminAction.kick)));
 
