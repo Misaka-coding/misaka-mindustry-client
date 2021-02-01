@@ -180,7 +180,7 @@ public class CustomPlayerListFragment extends PlayerListFragment {
             rebuild();
         }else{
             Core.scene.setKeyboardFocus(null);
-            sField.clearText();
+            //sField.clearText();
         }
     }
 
