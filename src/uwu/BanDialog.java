@@ -15,12 +15,12 @@ public class BanDialog extends BaseDialog {
         super("Ban");
         this.tgt=p;
         this.addCloseButton();
-        this.add(tgt.name).row();
+        this.cont.labelWrap(tgt.name).row();
         //this.add(tgt.con.address);
         this.cont.field(time, text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
         this.cont.row();
         this.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
-        //this.button("@ok",()-> Call.sendChatMessage("/ban "+time +" "+ tgt.con().address+ " "+reason));
+        this.button("@ok",()-> Call.sendChatMessage("tested "+time +" "+" "+reason));
         this.show();
     }
     public void reasonSetter(String s){
