@@ -17,8 +17,6 @@ import mindustry.ui.fragments.PlayerListFragment;
 
 import static mindustry.Vars.*;
 
-import static mindustry.Vars.*;
-
 public class CustomPlayerListFragment extends PlayerListFragment {
     public Table content = new Table().marginRight(13f).marginLeft(13f);
     private boolean visible = false;
@@ -87,7 +85,7 @@ public class CustomPlayerListFragment extends PlayerListFragment {
 
         players.sort(Structs.comps(Structs.comparing(Player::team), Structs.comparingBool(p -> !p.admin)));
 
-        for(var user : players){
+        for(Player user : players){
             found = true;
             NetConnection connection = user.con;
 
