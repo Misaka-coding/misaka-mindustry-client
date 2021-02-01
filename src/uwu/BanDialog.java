@@ -16,9 +16,9 @@ public class BanDialog extends BaseDialog {
         this.addCloseButton();
         this.add(tgt.name).row();
         this.add(tgt.con.address);
-        TextField t = (TextField)this.cont.field(time, text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
+        //TextField t = (TextField)this.cont.field(time, text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
         this.cont.row();
-        TextField r = this.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
+        //TextField r = this.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
         this.button("@ok",()-> Call.sendChatMessage("/ban "+time +" "+ tgt.con().address+ " "+reason));
     }
     public void reasonSetter(String s){
