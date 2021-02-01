@@ -13,99 +13,177 @@ import mindustry.graphics.*;
 import mindustry.net.*;
 import mindustry.net.Packets.*;
 import mindustry.ui.*;
-import mindustry.ui.fragments.*;
+import mindustry.ui.fragments.PlayerListFragment;
 
 import static mindustry.Vars.*;
 
-public class CustomPlayerListFragment extends PlayerListFragment{
-    public Table content = (new Table()).marginRight(13.0F).marginLeft(13.0F);
+import static mindustry.Vars.*;
 
+public class CustomPlayerListFragment extends PlayerListFragment {
+    public Table content = new Table().marginRight(13f).marginLeft(13f);
     private boolean visible = false;
-
     private Interval timer = new Interval();
-
     private TextField sField;
+    private Seq<Player> players = new Seq<>();
 
-    private Seq<Player> players = new Seq();
-
-    public void build(Group parent) {
-        this.content.name = "players";
+    @Override
+    public void build(Group parent){
+        content.name = "players";
         parent.fill(cont -> {
             cont.name = "playerlist";
-            cont.visible(());
-            cont.update(());
-            cont.table((Drawable)Tex.buttonTrans, ()).touchable(Touchable.enabled).margin(14.0F);
+            cont.visible(() -> visible);
+            cont.update(() -> {
+                if(!(net.active() && state.isGame())){
+                    visible = false;
+                    return;
+                }
+
+                if(visible && timer.get(20)){
+                    rebuild();
+                    content.pack();
+                    content.act(Core.graphics.getDeltaTime());
+                    //hacky
+                    Core.scene.act(0f);
+                }
+            });
+
+            cont.table(Tex.buttonTrans, pane -> {
+                pane.label(() -> Core.bundle.format(Groups.player.size() == 1 ? "players.single" : "players", Groups.player.size()));
+                pane.row();
+                sField = pane.field(null, text -> {
+                    rebuild();
+                }).grow().pad(8).get();
+                sField.name = "search";
+                sField.setMaxLength(maxNameLength);
+                sField.setMessageText(Core.bundle.format("players.search"));
+
+                pane.row();
+                pane.pane(content).grow().get().setScrollingDisabled(true, false);
+                pane.row();
+
+                pane.table(menu -> {
+                    menu.defaults().growX().height(50f).fillY();
+                    menu.name = "menu";
+
+                    menu.button("@server.bans", ui.bans::show).disabled(b -> net.client());
+                    menu.button("@server.admins", ui.admins::show).disabled(b -> net.client());
+                    menu.button("@close", this::toggle);
+                }).margin(0f).pad(10f).growX();
+
+            }).touchable(Touchable.enabled).margin(14f).minWidth(360f);
         });
+
         rebuild();
     }
 
-    public void rebuild() {
-        this.content.clear();
-        float h = 74.0F;
+    public void rebuild(){
+        content.clear();
+
+        float h = 74f;
         boolean found = false;
-        this.players.clear();
-        Groups.player.copy(this.players);
-        this.players.sort(Structs.comps(Structs.comparing(Player::team), Structs.comparingBool(p -> !p.admin)));
-        for (Iterator<Player> iterator = this.players.iterator(); iterator.hasNext(); ) {
-            Player user = iterator.next();
+
+        players.clear();
+        Groups.player.copy(players);
+
+        players.sort(Structs.comps(Structs.comparing(Player::team), Structs.comparingBool(p -> !p.admin)));
+
+        for(var user : players){
             found = true;
             NetConnection connection = user.con;
-            if (connection == null && Vars.net.server() && !user.isLocal())
-                return;
-            if (this.sField.getText().length() > 0 && !user.name().toLowerCase().contains(this.sField.getText().toLowerCase()) && !Strings.stripColors(user.name().toLowerCase()).contains(this.sField.getText().toLowerCase()))
-                return;
+
+            if(connection == null && net.server() && !user.isLocal()) return;
+            if(sField.getText().length() > 0 && !user.name().toLowerCase().contains(sField.getText().toLowerCase()) && !Strings.stripColors(user.name().toLowerCase()).contains(sField.getText().toLowerCase())) return;
+
             Table button = new Table();
             button.left();
-            button.margin(5.0F).marginBottom(10.0F);
-            Table table = new Table() {
-                public void draw() {
+            button.margin(5).marginBottom(10);
+
+            Table table = new Table(){
+                @Override
+                public void draw(){
                     super.draw();
                     Draw.color(Pal.gray);
-                    Draw.alpha(this.parentAlpha);
-                    Lines.stroke(Scl.scl(4.0F));
-                    Lines.rect(this.x, this.y, this.width, this.height);
+                    Draw.alpha(parentAlpha);
+                    Lines.stroke(Scl.scl(4f));
+                    Lines.rect(x, y, width, height);
                     Draw.reset();
                 }
             };
-            table.margin(8.0F);
-            table.add((Element)(new Image(user.icon())).setScaling(Scaling.bounded)).grow();
+            table.margin(8);
+            table.add(new Image(user.icon()).setScaling(Scaling.bounded)).grow();
             table.name = user.name();
-            button.add((Element)table).size(h);
-            button.labelWrap("[#" + user.color().toString().toUpperCase() + "]" + user.name()).width(170.0F).pad(10.0F);
+
+            button.add(table).size(h);
+            button.labelWrap("[#" + user.color().toString().toUpperCase() + "]" + user.name()).width(170f).pad(10);
             button.add().grow();
-            ((Image)button.image((Drawable)Icon.admin).visible(() -> (user.admin && (user.isLocal() || !Vars.net.server()))).padRight(5.0F).get()).updateVisibility();
-            if ((Vars.net.server() || Vars.player.admin) && !user.isLocal() && (!user.admin || Vars.net.server())) {
+
+            button.image(Icon.admin).visible(() -> user.admin && !(!user.isLocal() && net.server())).padRight(5).get().updateVisibility();
+
+            if((net.server() || player.admin) && !user.isLocal() && (!user.admin || net.server())){
                 button.add().growY();
-                float bs = h / 2.0F;
+
+                float bs = (h) / 2f;
+
                 button.table(t -> {
                     t.defaults().size(bs);
-                    t.button((Drawable)Icon.hammer, Styles.clearPartiali, ());
-                    t.button((Drawable)Icon.cancel, Styles.clearPartiali, ());
+
+                    t.button(Icon.hammer, Styles.clearPartiali,
+                            () -> ui.showConfirm("@confirm", Core.bundle.format("confirmban",  user.name()), () -> Call.adminRequest(user, AdminAction.ban)));
+                    t.button(Icon.cancel, Styles.clearPartiali,
+                            () -> ui.showConfirm("@confirm", Core.bundle.format("confirmkick",  user.name()), () -> Call.adminRequest(user, AdminAction.kick)));
+
                     t.row();
-                    t.button((Drawable)Icon.admin, Styles.clearTogglePartiali, ()).update(()).disabled(()).touchable(()).checked(user.admin);
-                    t.button((Drawable)Icon.zoom, Styles.clearPartiali, ());
-                }).padRight(12.0F).size(bs + 10.0F, bs);
-            } else if (!user.isLocal() && !user.admin && Vars.net.client() && Groups.player.size() >= 3 && Vars.player.team() == user.team()) {
+
+                    t.button(Icon.admin, Styles.clearTogglePartiali, () -> {
+                        if(net.client()) return;
+
+                        String id = user.uuid();
+
+                        if(netServer.admins.isAdmin(id, connection.address)){
+                            ui.showConfirm("@confirm", Core.bundle.format("confirmunadmin",  user.name()), () -> netServer.admins.unAdminPlayer(id));
+                        }else{
+                            ui.showConfirm("@confirm", Core.bundle.format("confirmadmin",  user.name()), () -> netServer.admins.adminPlayer(id, user.usid()));
+                        }
+                    }).update(b -> b.setChecked(user.admin))
+                            .disabled(b -> net.client())
+                            .touchable(() -> net.client() ? Touchable.disabled : Touchable.enabled)
+                            .checked(user.admin);
+
+                    t.button(Icon.zoom, Styles.clearPartiali, () -> Call.adminRequest(user, AdminAction.trace));
+
+                }).padRight(12).size(bs + 10f, bs);
+            }else if(!user.isLocal() && !user.admin && net.client() && Groups.player.size() >= 3 && player.team() == user.team()){ //votekick
                 button.add().growY();
-                button.button((Drawable)Icon.hammer, Styles.clearPartiali, () -> Vars.ui.showConfirm("@confirm", Core.bundle.format("confirmvotekick", new Object[] { user.name() }), ())).size(h);
+
+                button.button(Icon.hammer, Styles.clearPartiali,
+                        () -> {
+                            ui.showConfirm("@confirm", Core.bundle.format("confirmvotekick",  user.name()), () -> {
+                                Call.sendChatMessage("/votekick " + user.name());
+                            });
+                        }).size(h);
             }
-            this.content.add((Element)button).padBottom(-6.0F).width(350.0F).maxHeight(h + 14.0F);
-            this.content.row();
-            this.content.image().height(4.0F).color(Vars.state.rules.pvp ? (user.team()).color : Pal.gray).growX();
-            this.content.row();
+
+            content.add(button).padBottom(-6).width(350f).maxHeight(h + 14);
+            content.row();
+            content.image().height(4f).color(state.rules.pvp ? user.team().color : Pal.gray).growX();
+            content.row();
         }
-        if (!found)
-            this.content.add(Core.bundle.format("players.notfound", new Object[0])).padBottom(6.0F).width(350.0F).maxHeight(h + 14.0F);
-        this.content.marginBottom(5.0F);
+
+        if(!found){
+            content.add(Core.bundle.format("players.notfound")).padBottom(6).width(350f).maxHeight(h + 14);
+        }
+
+        content.marginBottom(5);
     }
 
-    public void toggle() {
-        this.visible = !this.visible;
-        if (this.visible) {
+    public void toggle(){
+        visible = !visible;
+        if(visible){
             rebuild();
-        } else {
+        }else{
             Core.scene.setKeyboardFocus(null);
-            this.sField.clearText();
+            sField.clearText();
         }
     }
+
 }
