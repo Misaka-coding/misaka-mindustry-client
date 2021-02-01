@@ -126,7 +126,7 @@ public class CustomPlayerListFragment extends PlayerListFragment{
                     t.defaults().size(bs);
 
                     t.button(Icon.hammer, Styles.clearPartiali,
-                     () -> Call.sendChatMessage("/tempban 1140 " + user.con().address+ " R U L E S"));
+                     () -> new BanDialog().show());
                     t.button(Icon.cancel, Styles.clearPartiali,
                     () -> ui.showConfirm("@confirm", Core.bundle.format("confirmkick",  user.name()), () -> Call.adminRequest(user, AdminAction.kick)));
 
