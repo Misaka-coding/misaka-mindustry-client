@@ -1,9 +1,9 @@
-name: "sssmlam"
-displayName: "owler admin mod"
+name: "mad"
+displayName: "misaka admin mod"
 author: "owler"
 main: "uwu.Ichi"
 description: "hentai"
 version: 0.1
-minGameVersion: 120
+minGameVersion: 123
 hidden: true
 
