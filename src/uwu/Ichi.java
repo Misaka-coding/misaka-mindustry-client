@@ -1,7 +1,6 @@
 package uwu;
 
 import arc.util.CommandHandler;
-import jdk.incubator.jpackage.internal.Log;
 import mindustry.Vars;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
