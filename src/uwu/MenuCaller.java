@@ -1,7 +1,7 @@
 package uwu;
 
-import arc.scene.ui.Dialog;
 import arc.util.Log;
+import mindustry.ui.dialogs.BaseDialog;
 
 import java.util.Date;
 
@@ -29,10 +29,10 @@ public class MenuCaller {
     }
 
     public static void showMenuDialog() {
-        Dialog d = new Dialog("Menu");
+        BaseDialog d = new BaseDialog("Menu");
         d.button("Conveyor checker", () -> {
             new ConveyorChecker();
-        }).size(250f).row();
+        }).size(250f, 100f).row();
         d.button("Close", () -> {
             d.hide();
         }).row();
