@@ -32,7 +32,7 @@ public class MenuCaller {
         BaseDialog d = new BaseDialog("Menu");
         d.button("Conveyor checker", () -> {
             new ConveyorChecker();
-        }).size(250f, 100f).row();
+        }).size(400f, 50f).row();
         d.button("Close", () -> {
             d.hide();
         }).row();
