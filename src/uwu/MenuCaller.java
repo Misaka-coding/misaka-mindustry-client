@@ -27,7 +27,6 @@ public class MenuCaller {
         }
         showMenuDialog();
     }
-
     public static void showMenuDialog() {
         BaseDialog d = new BaseDialog("Menu");
         d.button("Conveyor checker", () -> {
@@ -38,5 +37,4 @@ public class MenuCaller {
         }).row();
         d.show();
     }
-
 }
