@@ -32,8 +32,10 @@ public class MenuCaller {
         Dialog d = new Dialog("Menu");
         d.button("Conveyor checker", () -> {
             new ConveyorChecker();
+        }).size(250f).row();
+        d.button("Close", () -> {
+            d.hide();
         }).row();
-        d.addCloseButton();
         d.show();
     }
 
