@@ -1,11 +1,13 @@
 package uwu;
 
+import arc.scene.ui.Dialog;
 import arc.util.CommandHandler;
 import arc.util.Log;
 import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.gen.Player;
 import mindustry.mod.Mod;
+import mindustry.ui.dialogs.BaseDialog;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 
@@ -21,7 +23,7 @@ public class Ichi extends Mod {
     }
 
     public void findFakeConveyer() {
-
+        StringBuilder b =new StringBuilder();
         for (int x = 0; x < Vars.world.width(); x++) {
             for (int y = 0; y < Vars.world.height(); y++) {
                 Tile t = Vars.world.tile(x, y);
@@ -41,12 +43,13 @@ public class Ichi extends Mod {
                         lineChecker++;
                     }
                     if (lineChecker < 2) {
-                        Log.info("Conveyor shiza at " + x + " " + y);
+                        b.append("at " + x + " " + y+"\n");
                     }
                 }
             }
+
         }
-        Log.info("end of parsing");
+        new Dialog("Conveyor shiza").addCloseButton().add(b.toString()).show();
         return;
     }
 
@@ -59,7 +62,6 @@ public class Ichi extends Mod {
         }
         return false;
     }
-
     public boolean isConveyor(Block b) {
         return b == Blocks.conveyor || b == Blocks.titaniumConveyor || b == Blocks.armoredConveyor || b == Blocks.plastaniumConveyor;
     }
