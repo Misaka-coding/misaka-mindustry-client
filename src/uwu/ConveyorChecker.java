@@ -45,7 +45,16 @@ public class ConveyorChecker {
     }
 
     public boolean rotationChecker(int a, int b, int dx, int dy) {
-        if (a == b) {
+        if (a == b && a == 0 && dy == 1) {
+            return true;
+        }
+        if (a == b && a == 1 && dx == 1) {
+            return true;
+        }
+        if (a == b && a == 2 && dy == -1) {
+            return true;
+        }
+        if (a == b && a == 3 && dx == -1) {
             return true;
         }
         if (a == 0 && dy == 1 && ((a + 1 == b || b == 3))) {
