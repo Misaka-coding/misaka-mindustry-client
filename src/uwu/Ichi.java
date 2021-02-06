@@ -21,7 +21,7 @@ public class Ichi extends Mod {
     }
 
     public void findFakeConveyer() {
-        Log.info("Size is "+x+" "+y);
+        Log.info("Size is "+Vars.world.width()+" "+Vars.world.height());
         for (int x = 0; x < Vars.world.width(); x++) {
             for (int y = 0; y < Vars.world.height(); y++) {
                 Tile t = Vars.world.tile(x, y);
