@@ -25,7 +25,7 @@ public class Ichi extends Mod {
             for (int y = 0; y < Vars.world.width(); y++) {
                 Tile t = Vars.world.tile(x, y);
                 if (t.block() instanceof Conveyor) {
-                    Log.info("finded 1 conveyor");
+
                     int tgt = t.build.rotation;
                     int lineChecker= 0;
                     if (x - 1 > 0 && Vars.world.tile(x - 1, y).block() instanceof Conveyor && rotationChecker(Vars.world.tile(x - 1, y).build.rotation, tgt)) {
@@ -41,7 +41,7 @@ public class Ichi extends Mod {
                         lineChecker++;
                     }
                     if(lineChecker<2){
-                        Call.infoMessage("Conveyor shiza at "+x+" "+y);}
+                        Log.info("Conveyor shiza at "+x+" "+y);}
                 }
             }
         }
