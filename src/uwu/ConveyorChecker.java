@@ -44,7 +44,7 @@ public class ConveyorChecker {
         return b.toString();
     }
 
-    public boolean rotationChecker(int a, int b, int dx, int dy) {
+    public boolean rotationChecker(int b, int a, int dx, int dy) {
         if (a == b && a == 0 && dx == 1) {
             return true;
         }
