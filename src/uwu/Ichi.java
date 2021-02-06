@@ -50,9 +50,9 @@ public class Ichi extends Mod {
 
         }
         Dialog d = new Dialog("Conveyor shiza");
-                d.add(b.toString());
-                        d.addCloseButton();
-                                d.show();
+        d.add(b.toString());
+        d.button("Close",()->d.hide());
+        d.show();
         return;
     }
 
