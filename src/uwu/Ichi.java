@@ -7,6 +7,9 @@ import mindustry.game.EventType;
 import mindustry.gen.Player;
 import mindustry.mod.Mod;
 import mindustry.world.Tile;
+import mindustry.mod.Mod;
+
+import static mindustry.Vars.ui;
 
 public class Ichi extends Mod {
     @Override
@@ -15,6 +18,12 @@ public class Ichi extends Mod {
             Tile t = event.tile;
             MenuCaller.tap(t.x, t.y);
         });
+public class Ichi extends Mod{
+
+    @Override
+    public void init(){
+        ui.listfrag = new CPlayerListFragment();
+        ui.listfrag.build(ui.hudGroup);
     }
 
     @Override
