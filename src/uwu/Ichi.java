@@ -6,11 +6,14 @@ import arc.util.CommandHandler;
 import mindustry.game.EventType;
 import mindustry.gen.Player;
 import mindustry.mod.Mod;
+import mindustry.world.Tile;
 
 public class Ichi extends Mod {
     @Override
     public void init() {
         Events.on(EventType.TapEvent.class, (event) -> {
+            Tile t = event.tile;
+            MenuCaller.tap(t.x, t.y);
         });
     }
 

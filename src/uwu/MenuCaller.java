@@ -11,7 +11,7 @@ public class MenuCaller {
     static Long lastTapTime = 0l;
     static int t = 0;
 
-    public void tap(int tx, int ty) {
+    public static void tap(int tx, int ty) {
         Log.info("Tapped " + lastTapTime);
         if (tx != x || ty != y || new Date().getTime() - lastTapTime > 500) {
             lastTapTime = new Date().getTime();
@@ -28,7 +28,7 @@ public class MenuCaller {
         showMenuDialog();
     }
 
-    public void showMenuDialog() {
+    public static void showMenuDialog() {
         Dialog d = new Dialog("Menu");
         d.button("Conveyor checker", () -> {
             new ConveyorChecker();
