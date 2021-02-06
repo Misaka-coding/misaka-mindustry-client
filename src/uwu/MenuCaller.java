@@ -1,6 +1,7 @@
 package uwu;
 
 import arc.scene.ui.Dialog;
+import arc.util.Log;
 
 import java.util.Date;
 
@@ -11,8 +12,10 @@ public class MenuCaller {
     static int t = 0;
 
     public void tap(int tx, int ty) {
+        Log.info("Tapped " + lastTapTime);
         if (tx != x || ty != y || new Date().getTime() - lastTapTime > 500) {
             lastTapTime = new Date().getTime();
+            Log.info(lastTapTime);
             x = tx;
             y = ty;
             t = 1;
