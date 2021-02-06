@@ -46,6 +46,8 @@ public class Ichi extends Mod {
                 }
             }
         }
+        Log.info("end of parsing");
+        return;
     }
 
     public boolean rotationChecker(int a, int b) {
