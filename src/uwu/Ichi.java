@@ -27,8 +27,8 @@ public class Ichi extends Mod {
         for (int x = 0; x < Vars.world.width(); x++) {
             for (int y = 0; y < Vars.world.height(); y++) {
                 Tile t = Vars.world.tile(x, y);
-                if (t.block() instanceof Conveyor) {
-
+                if (isConveyor(t.block())) {
+                    Log.info(x+" "+y);
                     int tgt = t.build.rotation;
                     int lineChecker= 0;
                     if (x - 1 > 0 && isConveyor(Vars.world.tile(x - 1, y).block()) && rotationChecker(Vars.world.tile(x - 1, y).build.rotation, tgt)) {
