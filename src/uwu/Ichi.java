@@ -21,13 +21,11 @@ public class Ichi extends Mod {
     }
 
     public void findFakeConveyer() {
-        Log.info("Size is " + Vars.world.width() + " " + Vars.world.height());
+
         for (int x = 0; x < Vars.world.width(); x++) {
             for (int y = 0; y < Vars.world.height(); y++) {
                 Tile t = Vars.world.tile(x, y);
-                Log.info(x + " " + y);
                 if (t.block() != null && isConveyor(t.block())) {
-                    Log.info(x + " " + y);
                     int tgt = t.build.rotation;
                     int lineChecker = 0;
                     if (x - 1 > 0 && Vars.world.tile(x - 1, y).block() != null && isConveyor(Vars.world.tile(x - 1, y).block()) && rotationChecker(Vars.world.tile(x - 1, y).build.rotation, tgt)) {
