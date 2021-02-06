@@ -1,32 +1,44 @@
 package uwu;
 
-import arc.scene.ui.Dialog;
-import arc.scene.ui.TextField;
-import mindustry.gen.Call;
-import mindustry.gen.Player;
+import arc.input.KeyCode;
+import mindustry.Vars;
+import mindustry.gen.*;
 import mindustry.ui.dialogs.BaseDialog;
 
-public class BanDialog extends BaseDialog {
+public class BanDialog extends BaseDialog{
     private String time = "60";
     private String reason = "60";
-    public Player tgt=null;
+    public Player tgt;
 
-    public BanDialog(Player p) {
+    public BanDialog(Player p){
         super("Ban");
-        this.tgt=p;
-        this.addCloseButton();
-        this.cont.labelWrap(tgt.name).row();
-        //this.add(tgt.con.address);
-        this.cont.field(time, text->timeSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
-        this.cont.row();
-        this.cont.field(reason,text->reasonSetter(text)).size(320.0F, 54.0F).maxTextLength(100).addInputDialog().get();
-        this.button("@ok",()-> Call.sendChatMessage("tested "+time +" "+" "+reason));
-        this.show();
+        tgt = p;
+        cont.add(tgt.name).width(Vars.mobile ? 400f : 500f).wrap().pad(4f).get().setAlignment(1, 1);
+        buttons.defaults().size(200f, 54f).pad(2f);
+        cont.row();
+        cont.field(time, this::timeSetter).size(320f, 54f).maxTextLength(50).addInputDialog().get();
+        cont.row();
+        cont.field(reason, this::reasonSetter).size(320f, 54f).maxTextLength(100).addInputDialog().get();
+
+        buttons.button("@cancel", this::hide);
+        buttons.button("@ok", () -> {
+            hide();
+            Call.sendChatMessage("tested " + time + " " + reason);
+        });
+        keyDown(KeyCode.enter, () -> {
+            hide();
+            Call.sendChatMessage("tested " + time + " " + reason);
+        });
+        keyDown(KeyCode.escape, this::hide);
+        keyDown(KeyCode.back, this::hide);
+        show();
     }
+
     public void reasonSetter(String s){
-        reason=s;
+        reason = s;
     }
+
     public void timeSetter(String s){
-        time=s;
+        time = s;
     }
 }
