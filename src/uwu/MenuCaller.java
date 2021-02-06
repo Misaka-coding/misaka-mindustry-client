@@ -1,6 +1,5 @@
 package uwu;
 
-import arc.util.Log;
 import mindustry.ui.dialogs.BaseDialog;
 
 import java.util.Date;
@@ -12,10 +11,8 @@ public class MenuCaller {
     static int t = 0;
 
     public static void tap(int tx, int ty) {
-        Log.info("Tapped " + lastTapTime);
         if (tx != x || ty != y || new Date().getTime() - lastTapTime > 500) {
             lastTapTime = new Date().getTime();
-            Log.info(lastTapTime);
             x = tx;
             y = ty;
             t = 1;

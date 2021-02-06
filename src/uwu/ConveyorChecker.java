@@ -35,7 +35,7 @@ public class ConveyorChecker {
                         lineChecker++;
                     }
                     if (lineChecker < 2) {
-                        b.append("at " + x + " " + y + "\n");
+                        b.append("at " + x + " " + y + " " + Vars.world.tile(x, y).build.rotation + "\n");
                     }
                 }
             }
