@@ -9,12 +9,13 @@ import mindustry.world.Tile;
 public class ConveyorChecker {
     public ConveyorChecker() {
         Dialog d = new Dialog("Conveyor shiza");
-        d.add(findFakeConveyer());
-        d.button("Close",()->d.hide());
+        d.add(findFakeConveyor());
+        d.button("Close", () -> d.hide());
         d.show();
     }
-    public String findFakeConveyer() {
-        StringBuilder b =new StringBuilder();
+
+    public String findFakeConveyor() {
+        StringBuilder b = new StringBuilder();
         for (int x = 0; x < Vars.world.width(); x++) {
             for (int y = 0; y < Vars.world.height(); y++) {
                 Tile t = Vars.world.tile(x, y);
@@ -47,10 +48,7 @@ public class ConveyorChecker {
         if (a + 1 == b || b + 1 == a || a == b) {
             return true;
         }
-        if ((a == 3 && b == 0) || (a == 0 && b == 3)) {
-            return true;
-        }
-        return false;
+        return (a == 3 && b == 0) || (a == 0 && b == 3);
     }
     public boolean isConveyor(Block b) {
         return b == Blocks.conveyor || b == Blocks.titaniumConveyor || b == Blocks.armoredConveyor || b == Blocks.plastaniumConveyor;

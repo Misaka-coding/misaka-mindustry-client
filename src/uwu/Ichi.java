@@ -1,20 +1,17 @@
 package uwu;
 
-import arc.scene.ui.Dialog;
+
+import arc.Events;
 import arc.util.CommandHandler;
-import arc.util.Log;
-import mindustry.Vars;
-import mindustry.content.Blocks;
+import mindustry.game.EventType;
 import mindustry.gen.Player;
 import mindustry.mod.Mod;
-import mindustry.ui.dialogs.BaseDialog;
-import mindustry.world.Block;
-import mindustry.world.Tile;
 
 public class Ichi extends Mod {
     @Override
     public void init() {
-
+        Events.on(EventType.TapEvent.class, (event) -> {
+        });
     }
 
     @Override
