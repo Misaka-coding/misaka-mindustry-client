@@ -59,7 +59,7 @@ public class ConveyorChecker {
             return true;
         }
 
-        //стандартное направление, для следующего
+        //выход
         if (a == 0 && dx == 1 && (b == 1 || b == 3)) {
             return true;
         }
@@ -70,6 +70,31 @@ public class ConveyorChecker {
             return true;
         }
         if (a == 3 && dy == -1 && (b == 0 || b == 2)) {
+            return true;
+        }
+        //вход
+        if (a == 0 && dy == 1 && b == 3) {
+            return true;
+        }
+        if (a == 0 && dy == -1 && b == 1) {
+            return true;
+        }
+        if (a == 1 && dx == 1 && b == 2) {
+            return true;
+        }
+        if (a == 1 && dx == -1 && b == 0) {
+            return true;
+        }
+        if (a == 2 && dy == 1 && b == 3) {
+            return true;
+        }
+        if (a == 2 && dy == -1 && b == 1) {
+            return true;
+        }
+        if (a == 3 && dx == 1 && b == 2) {
+            return true;
+        }
+        if (a == 3 && dx == -1 && b == 0) {
             return true;
         }
 
