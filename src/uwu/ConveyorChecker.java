@@ -45,9 +45,7 @@ public class ConveyorChecker {
     }
 
     public boolean rotationChecker(int b, int a, int dx, int dy) {
-        //work
-
-        //lr->ud
+        //Общее направление
         if (a == b && a == 0 && dx != 0) {
             return true;
         }
@@ -60,52 +58,57 @@ public class ConveyorChecker {
         if (a == b && a == 3 && dy != 0) {
             return true;
         }
-        if (a == 0 && dx == 1 && (a + 1 == b || b == 3)) {
+
+        //стандартное направление, для следующего
+        if (a == 0 && dx == 1 && (b == 1 || b == 3)) {
             return true;
         }
-        if (a == 1 && dy == -1 && (a + 1 == b || a == b + 1)) {
+        if (a == 1 && dy == 1 && (b == 0 || b == 2)) {
             return true;
         }
-        if (a == 2 && dx == -1 && (a + 1 == b || a == b + 1)) {
+        if (a == 2 && dx == -1 && (b == 1 || b == 3)) {
             return true;
         }
-        if (a == 3 && dy == 1 && (b == 0 || a == b + 1)) {
+        if (a == 3 && dy == -1 && (b == 0 || b == 2)) {
             return true;
         }
-        if (b == 0 && dx == -1 && (b + 1 == a || a == 3)) {
+
+        //стандартное направление, для предыдущего
+        if (b == 0 && dx == -1 && (a == 1 || a == 3)) {
             return true;
         }
-        if (b == 1 && dy == 1 && (b + 1 == b || b == a + 1)) {
+        if (b == 1 && dy == 1 && (a == 0 || a == 2)) {
             return true;
         }
-        if (b == 2 && dx == 1 && (b + 1 == a || b == a + 1)) {
+        if (b == 2 && dx == 1 && (a == 1 || a == 3)) {
             return true;
         }
-        if (b == 3 && dy == -1 && (a == 0 || b == a + 1)) {
+        if (b == 3 && dy == -1 && (a == 0 || a == 2)) {
             return true;
         }
-        //ud->lr
-        if (a == 0 && dy == 1 && (a + 1 == b || b == 3)) {
-            return true;
-        }
-        if (a == 1 && dx == -1 && (a + 1 == b || a == b + 1)) {
-            return true;
-        }
-        if (a == 2 && dy == -1 && (a + 1 == b || a == b + 1)) {
-            return true;
-        }
-        if (a == 3 && dx == 1 && (b == 0 || a == b + 1)) {
-            return true;
-        }
-        if (b == 0 && dy == -1 && (b + 1 == a || a == 3)) {
-            return true;
-        }
-        if (b == 1 && dx == 1 && (b + 1 == b || b == a + 1)) {
-            return true;
-        }
-        if (b == 2 && dy == 1 && (b + 1 == a || b == a + 1)) {
-            return true;
-        }
+//
+//        //ud->lr
+//        if (a == 0 && dy == 1 && (a + 1 == b || b == 3)) {
+//            return true;
+//        }
+//        if (a == 1 && dx == -1 && (a + 1 == b || a == b + 1)) {
+//            return true;
+//        }
+//        if (a == 2 && dy == -1 && (a + 1 == b || a == b + 1)) {
+//            return true;
+//        }
+//        if (a == 3 && dx == 1 && (b == 0 || a == b + 1)) {
+//            return true;
+//        }
+//        if (b == 0 && dy == -1 && (b + 1 == a || a == 3)) {
+//            return true;
+//        }
+//        if (b == 1 && dx == 1 && (b + 1 == b || b == a + 1)) {
+//            return true;
+//        }
+//        if (b == 2 && dy == 1 && (b + 1 == a || b == a + 1)) {
+//            return true;
+//        }
         return b == 3 && dx == -1 && (a == 0 || b == a + 1);
     }
 
