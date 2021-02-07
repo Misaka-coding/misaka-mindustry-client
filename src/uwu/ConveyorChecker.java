@@ -22,16 +22,16 @@ public class ConveyorChecker {
                 if (t.block() != null && isConveyor(t.block())) {
                     int tgt = t.build.rotation;
                     int lineChecker = 0;
-                    if (x - 1 > 0 && Vars.world.tile(x - 1, y).block() != null && isConveyor(Vars.world.tile(x - 1, y).block()) && rotationChecker(Vars.world.tile(x - 1, y).build.rotation, tgt, -1, 0) || isSubConveyor(Vars.world.tile(x - 1, y).block()) || isContains(Vars.world.tile(x - 1, y).block(), -1, 0, tgt)) {
+                    if ((x - 1 > 0 && Vars.world.tile(x - 1, y).block() != null && isConveyor(Vars.world.tile(x - 1, y).block()) && rotationChecker(Vars.world.tile(x - 1, y).build.rotation, tgt, -1, 0)) || isSubConveyor(Vars.world.tile(x - 1, y).block()) || isContains(Vars.world.tile(x - 1, y).block(), -1, 0, tgt)) {
                         lineChecker++;
                     }
-                    if (x + 1 < Vars.world.width() && Vars.world.tile(x + 1, y).block() != null && isConveyor(Vars.world.tile(x + 1, y).block()) && rotationChecker(Vars.world.tile(x + 1, y).build.rotation, tgt, 1, 0) || isSubConveyor(Vars.world.tile(x + 1, y).block()) || isContains(Vars.world.tile(x + 1, y).block(), 1, 0, tgt)) {
+                    if ((x + 1 < Vars.world.width() && Vars.world.tile(x + 1, y).block() != null && isConveyor(Vars.world.tile(x + 1, y).block()) && rotationChecker(Vars.world.tile(x + 1, y).build.rotation, tgt, 1, 0)) || isSubConveyor(Vars.world.tile(x + 1, y).block()) || isContains(Vars.world.tile(x + 1, y).block(), 1, 0, tgt)) {
                         lineChecker++;
                     }
-                    if (y - 1 > 0 && Vars.world.tile(x, y - 1).block() != null && isConveyor(Vars.world.tile(x, y - 1).block()) && rotationChecker(Vars.world.tile(x, y - 1).build.rotation, tgt, 0, -1) || isSubConveyor(Vars.world.tile(x, y - 1).block()) || isContains(Vars.world.tile(x, y - 1).block(), 0, -1, tgt)) {
+                    if ((y - 1 > 0 && Vars.world.tile(x, y - 1).block() != null && isConveyor(Vars.world.tile(x, y - 1).block()) && rotationChecker(Vars.world.tile(x, y - 1).build.rotation, tgt, 0, -1)) || isSubConveyor(Vars.world.tile(x, y - 1).block()) || isContains(Vars.world.tile(x, y - 1).block(), 0, -1, tgt)) {
                         lineChecker++;
                     }
-                    if (y + 1 < Vars.world.height() && Vars.world.tile(x, y + 1).block() != null && isConveyor(Vars.world.tile(x, y + 1).block()) && rotationChecker(Vars.world.tile(x, y + 1).build.rotation, tgt, 0, 1) || isSubConveyor(Vars.world.tile(x, y + 1).block()) || isContains(Vars.world.tile(x, y + 1).block(), 0, 1, tgt)) {
+                    if ((y + 1 < Vars.world.height() && Vars.world.tile(x, y + 1).block() != null && isConveyor(Vars.world.tile(x, y + 1).block()) && rotationChecker(Vars.world.tile(x, y + 1).build.rotation, tgt, 0, 1)) || isSubConveyor(Vars.world.tile(x, y + 1).block()) || isContains(Vars.world.tile(x, y + 1).block(), 0, 1, tgt)) {
                         lineChecker++;
                     }
                     if (lineChecker < 2) {
