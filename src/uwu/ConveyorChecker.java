@@ -107,18 +107,6 @@ public class ConveyorChecker {
     }
 
     public boolean isContains(Block b, int dx, int dy, int rtt) {
-        if (!(dx == 1 && rtt == 0)) {
-            return false;
-        }
-        if (!(dx == -1 && rtt == 2)) {
-            return false;
-        }
-        if (!(dy == 1 && rtt == 1)) {
-            return false;
-        }
-        if (!(dy == -1 && rtt == 3)) {
-            return false;
-        }
-        return b.hasItems;
+        return ((dy == -1 && rtt == 3) || (dy == 1 && rtt == 1) || (dx == -1 && rtt == 2) || (dx == 1 && rtt == 0)) && b.hasItems;
     }
 }
