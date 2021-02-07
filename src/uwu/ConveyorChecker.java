@@ -112,6 +112,6 @@ public class ConveyorChecker {
     }
 
     public boolean isConnect(Block b) {
-        return b instanceof GenericSmelter;
+        return b instanceof GenericSmelter || b == Blocks.unloader;
     }
 }
