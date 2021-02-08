@@ -5,6 +5,7 @@ import mindustry.content.Blocks;
 import mindustry.ui.dialogs.BaseDialog;
 import mindustry.world.Block;
 import mindustry.world.Tile;
+import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericSmelter;
 
 public class ConveyorChecker {
@@ -112,6 +113,6 @@ public class ConveyorChecker {
     }
 
     public boolean isConnect(Block b) {
-        return b instanceof GenericSmelter || b == Blocks.unloader;
+        return b instanceof GenericSmelter || b == Blocks.unloader || b instanceof Drill;
     }
 }
