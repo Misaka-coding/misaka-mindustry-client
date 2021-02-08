@@ -1,7 +1,7 @@
 package uwu.utils.conveyors;
 
 import arc.math.geom.Vec2;
-import jdk.incubator.jpackage.internal.Log;
+import arc.util.Log;
 import mindustry.Vars;
 import mindustry.ui.dialogs.BaseDialog;
 
