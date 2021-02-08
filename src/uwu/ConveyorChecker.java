@@ -14,7 +14,7 @@ public class ConveyorChecker {
         d.center().row();
         for (String s : findFakeConveyor().split("\n")) {
             d.center().button(s, () -> {
-            }).row();
+            }).size(250, 50).row();
         }
         d.button("Close", () -> d.hide());
         d.closeOnBack();
