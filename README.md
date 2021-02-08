@@ -5,6 +5,6 @@ A Java Mindustry mod client that works on Android and PC.
 
 All builds in Actions page
 
-##Usage
+## Usage
 
 Triple tap on one tile to open menu
