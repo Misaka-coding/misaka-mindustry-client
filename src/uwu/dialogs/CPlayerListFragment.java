@@ -1,16 +1,23 @@
-package uwu;
+package uwu.dialogs;
 
 import arc.Core;
-import arc.graphics.g2d.*;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Lines;
 import arc.scene.Group;
 import arc.scene.event.Touchable;
-import arc.scene.ui.*;
-import arc.scene.ui.layout.*;
+import arc.scene.ui.Image;
+import arc.scene.ui.TextField;
+import arc.scene.ui.layout.Scl;
+import arc.scene.ui.layout.Table;
 import arc.struct.Seq;
-import arc.util.*;
+import arc.util.Interval;
+import arc.util.Scaling;
+import arc.util.Strings;
+import arc.util.Structs;
 import mindustry.gen.*;
 import mindustry.graphics.Pal;
-import mindustry.net.*;
+import mindustry.net.NetConnection;
+import mindustry.net.Packets;
 import mindustry.ui.Styles;
 import mindustry.ui.fragments.PlayerListFragment;
 
@@ -19,9 +26,9 @@ import static mindustry.Vars.*;
 public class CPlayerListFragment extends PlayerListFragment{
     public Table content = new Table().marginRight(13f).marginLeft(13f);
     private boolean visible = false;
-    private Interval timer = new Interval();
+    private final Interval timer = new Interval();
     private TextField sField;
-    private Seq<Player> players = new Seq<>();
+    private final Seq<Player> players = new Seq<>();
 
     @Override
     public void build(Group parent){

@@ -1,4 +1,4 @@
-package uwu;
+package uwu.utils.conveyors;
 
 import mindustry.Vars;
 import mindustry.content.Blocks;
@@ -13,7 +13,9 @@ public class ConveyorChecker {
         BaseDialog d = new BaseDialog("Conveyor shiza");
         d.center().row();
         for (String s : findFakeConveyor().split("\n")) {
+            //TODO change method of displaying
             d.center().button(s, () -> {
+                new AdvancedInfo(10, 10);
             }).size(250, 50).row();
         }
         d.button("Close", () -> d.hide());

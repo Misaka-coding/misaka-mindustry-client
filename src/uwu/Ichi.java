@@ -5,6 +5,8 @@ import arc.Events;
 import mindustry.game.EventType;
 import mindustry.mod.Mod;
 import mindustry.world.Tile;
+import uwu.dialogs.CPlayerListFragment;
+import uwu.utils.MenuCaller;
 
 import static mindustry.Vars.ui;
 

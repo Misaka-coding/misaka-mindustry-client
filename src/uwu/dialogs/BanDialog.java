@@ -1,8 +1,9 @@
-package uwu;
+package uwu.dialogs;
 
 import arc.input.KeyCode;
 import mindustry.Vars;
-import mindustry.gen.*;
+import mindustry.gen.Call;
+import mindustry.gen.Player;
 import mindustry.ui.dialogs.BaseDialog;
 
 public class BanDialog extends BaseDialog{
