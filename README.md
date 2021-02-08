@@ -8,3 +8,5 @@ All builds in Actions page
 ## Usage
 
 Triple tap on one tile to open menu
+
+### Specified for pandorum
