@@ -11,8 +11,12 @@ import mindustry.world.blocks.production.GenericSmelter;
 public class ConveyorChecker {
     public ConveyorChecker() {
         BaseDialog d = new BaseDialog("Conveyor shiza");
-        d.add(findFakeConveyor());
+        d.center();
+        for (String s : findFakeConveyor().split("\n")) {
+            d.center().add(s).row();
+        }
         d.button("Close", () -> d.hide());
+        d.closeOnBack();
         d.show();
     }
 
