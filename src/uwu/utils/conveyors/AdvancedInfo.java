@@ -22,7 +22,7 @@ public class AdvancedInfo {
             }
             hentai.trns(Vars.player.unit().angleTo(x * 8f, y * 8f), Vars.player.unit().type().speed);
             Vars.player.unit().moveAt(hentai);
-            Log.info(hentai.x + ' ' + hentai.y);
+            Log.info(hentai.x + " " + hentai.y);
             d.hide();
         }).size(250, 50).row();
         d.button("Close", () -> d.hide());
