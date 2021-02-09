@@ -5,6 +5,7 @@ import mindustry.Vars;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
 import mindustry.ui.dialogs.BaseDialog;
+import mindustry.net.Packets;
 
 public class BanDialog extends BaseDialog{
     private String time = "60";
