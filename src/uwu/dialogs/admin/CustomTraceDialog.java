@@ -1,4 +1,4 @@
-package uwu.dialogs;
+package uwu.dialogs.admin;
 
 import arc.Core;
 import arc.scene.ui.layout.Table;
