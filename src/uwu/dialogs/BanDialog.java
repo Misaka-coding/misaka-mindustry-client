@@ -26,6 +26,7 @@ public class BanDialog extends BaseDialog{
             hide();
             Call.sendChatMessage("tested " + time + " " + reason);
         });
+        buttons.button("Default",()->{Call.adminRequest(p, Packets.AdminAction.ban);});
         keyDown(KeyCode.enter, () -> {
             hide();
             Call.sendChatMessage("tested " + time + " " + reason);
