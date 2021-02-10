@@ -45,6 +45,11 @@ public class CustomTraceDialog extends TraceDialog {
         table.row();
         table.add(Core.bundle.format("trace.mobile", info.mobile));
         table.row();
+        table.button(Icon.hammer, () -> {
+            this.hide();
+            new BanDialog(player);
+        });
+        table.row();
 
         table.add().pad(5);
         table.row();
