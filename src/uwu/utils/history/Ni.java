@@ -19,15 +19,15 @@ public class Ni {
         });
         Events.on(EventType.BlockBuildEndEvent.class, event -> {
             if (event.breaking) {
-
+                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(), event.unit, Object.destroy, null));
             }
             if (!event.breaking) {
-                return;
+                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(), event.unit, Object.build, null));
             }
             return;
         });
-        Events.on(EventType.ConfigEvent.class, tapConfigEvent -> {
-            return;
+        Events.on(EventType.ConfigEvent.class, event -> {
+            addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(), event.player.lastReadUnit, Object.config, event.value));
         });
     }
 
@@ -59,7 +59,6 @@ public class Ni {
             history = new ArrayList<>();
         }
     }
-
     public class HAction {
         Block block;
         Player player;
@@ -68,7 +67,7 @@ public class Ni {
         Date date;
         String config;
 
-        public HAction(Block b, Unit u, Object type, Object config) {
+        public HAction(Block b, Unit u, Object type, java.lang.Object config) {
             this.type = type;
             this.block = b;
             this.unit = u;
