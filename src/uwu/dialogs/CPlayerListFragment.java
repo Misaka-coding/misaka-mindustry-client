@@ -132,9 +132,8 @@ public class CPlayerListFragment extends PlayerListFragment{
                 button.table(t -> {
                     t.defaults().size(bs);
 
-                    // t.button(Icon.hammer, Styles.clearPartiali,
-                    //          () -> ui.showConfirm("@confirm", Core.bundle.format("confirmban",  user.name()), () -> Call.adminRequest(user, Packets.AdminAction.ban)));
-                    t.button(Icon.defense, Styles.clearPartiali, () -> new BanDialog(user));
+                    t.button(Icon.hammer, Styles.clearPartiali,
+                             () -> ui.showConfirm("@confirm", Core.bundle.format("confirmban",  user.name()), () -> Call.adminRequest(user, Packets.AdminAction.ban)));
                     t.button(Icon.cancel, Styles.clearPartiali,
                              () -> ui.showConfirm("@confirm", Core.bundle.format("confirmkick",  user.name()), () -> Call.adminRequest(user, Packets.AdminAction.kick)));
 
@@ -158,7 +157,7 @@ public class CPlayerListFragment extends PlayerListFragment{
                     t.button(Icon.zoom, Styles.clearPartiali, () -> Call.adminRequest(user, Packets.AdminAction.trace));
 
                 }).padRight(12).size(bs + 10f, bs);
-            }else if(!user.isLocal() && !user.admin && net.client() && Groups.player.size() >= 3 && player.team() == user.team()){ //votekick
+            }else if(!user.isLocal() && !user.admin && net.client() && Groups.player.size() >= 3 && player.team() == user.team()){
                 button.add().growY();
 
                 button.button(Icon.hammer, Styles.clearPartiali,

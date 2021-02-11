@@ -18,7 +18,7 @@ public class ConveyorChecker {
                 new AdvancedInfo(10, 10);
             }).size(250, 50).row();
         }
-        d.button("Close", () -> d.hide());
+        d.button("Close", d::hide);
         d.closeOnBack();
         d.show();
     }

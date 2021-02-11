@@ -25,7 +25,7 @@ public class AdvancedInfo {
             Log.info(hentai.x + " " + hentai.y);
             d.hide();
         }).size(250, 50).row();
-        d.button("Close", () -> d.hide());
+        d.button("Close", d::hide);
         d.closeOnBack();
         d.show();
     }

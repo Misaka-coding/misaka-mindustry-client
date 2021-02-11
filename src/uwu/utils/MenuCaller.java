@@ -27,12 +27,8 @@ public class MenuCaller {
     }
     public static void showMenuDialog() {
         BaseDialog d = new BaseDialog("Menu");
-        d.button("Conveyor checker", () -> {
-            new ConveyorChecker();
-        }).size(400f, 50f).row();
-        d.button("Close", () -> {
-            d.hide();
-        }).row();
+        d.button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).row();
+        d.button("Close", d::hide).row();
         d.show();
     }
 }
