@@ -1,6 +1,7 @@
-package uwu;
+package uwu.utils;
 
 import mindustry.ui.dialogs.BaseDialog;
+import uwu.utils.conveyors.ConveyorChecker;
 
 import java.util.Date;
 
