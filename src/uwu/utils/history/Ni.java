@@ -19,15 +19,15 @@ public class Ni {
         });
         Events.on(EventType.BlockBuildEndEvent.class, event -> {
             if (event.breaking) {
-                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(), event.unit, Object.destroy, null));
+                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.destroy, null));
             }
             if (!event.breaking) {
-                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(), event.unit, Object.build, null));
+                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.build, null));
             }
             return;
         });
         Events.on(EventType.ConfigEvent.class, event -> {
-            addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(), event.player.lastReadUnit, Object.config, event.value));
+            addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(),event.tile.tileX(), event.tile.tileY(), event.player.lastReadUnit, Object.config, event.value));
         });
     }
 
@@ -42,7 +42,26 @@ public class Ni {
         i.history.add(a);
         history.add(i);
     }
+    public Info getHistory(int x,int y){
+        for (Info i : history) {
+            if (i.x == x && i.y == y) {
+                return i;
+            }
+        }
+        return null;
+    }
 
+    public static ArrayList<HAction> getPlayerHistory(Player player) {
+        ArrayList<HAction> rtn=new ArrayList();
+        for (Info i : history) {
+            for(HAction s:i.history){
+                if(s.player==player){
+                    rtn.add(s);
+                }
+            }
+        }
+        return rtn;
+    }
 
     public enum Object {
         build, destroy, config
@@ -66,9 +85,13 @@ public class Ni {
         Object type;
         Date date;
         String config;
+        int x;
+        int y;
 
-        public HAction(Block b, Unit u, Object type, java.lang.Object config) {
+        public HAction(Block b, int x, int y, Unit u, Object type, java.lang.Object config) {
             this.type = type;
+            this.x=x;
+            this.y=y;
             this.block = b;
             this.unit = u;
             if (u.isPlayer() || u.controller().unit().isPlayer()) {
