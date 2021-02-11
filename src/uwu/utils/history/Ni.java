@@ -8,6 +8,8 @@ import mindustry.world.Block;
 import mindustry.world.blocks.logic.LogicBlock;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Ni {
@@ -59,6 +61,14 @@ public class Ni {
                 }
             }
         }
+        Collections.sort(rtn, new Comparator<HAction>() {
+            @Override
+            public int compare(HAction o1, HAction o2) {
+                if(o1.date.after(o2.date)){return -1;}
+                if(o1.date.before(o2.date)){return 1;}
+                return 0;
+            }
+        });
         return rtn;
     }
 
