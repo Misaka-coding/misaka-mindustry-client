@@ -1,9 +1,9 @@
-name: "mad"
-displayName: "misaka admin mod"
+name: "mmc"
+displayName: "misaka mindustry client"
 author: "owler"
 main: "uwu.Ichi"
 description: "hentai"
-version: 0.1
-minGameVersion: 123
+version: 0.2
+minGameVersion: 124
 hidden: true
 
