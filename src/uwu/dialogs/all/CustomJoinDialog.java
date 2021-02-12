@@ -40,7 +40,7 @@ public class CustomJoinDialog extends JoinDialog{
     int lastPort;
     Task ping;
 
-    public JoinDialog(){
+    public CustomJoinDialog(){
         super("@joingame");
 
         loadServers();
