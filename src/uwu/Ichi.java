@@ -6,7 +6,6 @@ import mindustry.mod.Mod;
 import mindustry.world.Tile;
 import uwu.dialogs.CPlayerListFragment;
 import uwu.dialogs.admin.CustomTraceDialog;
-import uwu.dialogs.all.CJoinDialog;
 import uwu.utils.MenuCaller;
 import uwu.utils.history.Ni;
 
@@ -24,6 +23,5 @@ public class Ichi extends Mod {
         ui.listfrag = new CPlayerListFragment();
         ui.listfrag.build(ui.hudGroup);
         ui.traces = new CustomTraceDialog();
-        ui.join = new CJoinDialog();
     }
 }
