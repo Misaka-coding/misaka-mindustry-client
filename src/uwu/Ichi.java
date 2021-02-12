@@ -15,7 +15,7 @@ public class Ichi extends Mod {
     public Ni history;
     @Override
     public void init() {
-        history = new Ni();
+        //history = new Ni();
         Events.on(EventType.TapEvent.class, (event) -> {
             Tile t = event.tile;
             MenuCaller.tap(t.x, t.y);
