@@ -1,6 +1,7 @@
 package uwu.dialogs.all;
 
 import mindustry.ui.dialogs.*;
+import mindustry.ui.dialogs.JoinDialog;
 import arc.*;
 import arc.Net.*;
 import arc.graphics.*;
@@ -555,44 +556,5 @@ public class CustomJoinDialog extends JoinDialog{
     private void saveServers(){
         Core.settings.putJson("servers", Server.class, servers);
     }
-
-    public static class Server{
-        public String ip;
-        public int port;
-
-        transient Table content;
-        transient Host lastHost;
-
-        void setIP(String ip){
-            try{
-                boolean isIpv6 = Strings.count(ip, ':') > 1;
-                if(isIpv6 && ip.lastIndexOf("]:") != -1 && ip.lastIndexOf("]:") != ip.length() - 1){
-                    int idx = ip.indexOf("]:");
-                    this.ip = ip.substring(1, idx);
-                    this.port = Integer.parseInt(ip.substring(idx + 2, ip.length()));
-                }else if(!isIpv6 && ip.lastIndexOf(':') != -1 && ip.lastIndexOf(':') != ip.length() - 1){
-                    int idx = ip.lastIndexOf(':');
-                    this.ip = ip.substring(0, idx);
-                    this.port = Integer.parseInt(ip.substring(idx + 1));
-                }else{
-                    this.ip = ip;
-                    this.port = Vars.port;
-                }
-            }catch(Exception e){
-                this.ip = ip;
-                this.port = Vars.port;
-            }
-        }
-
-        String displayIP(){
-            if(Strings.count(ip, ':') > 1){
-                return port != Vars.port ? "[" + ip + "]:" + port : ip;
-            }else{
-                return ip + (port != Vars.port ? ":" + port : "");
-            }
-        }
-
-        public Server(){
-        }
-    }
+    
 }
