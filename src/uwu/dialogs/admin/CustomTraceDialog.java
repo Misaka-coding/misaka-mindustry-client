@@ -8,6 +8,7 @@ import mindustry.gen.Player;
 import mindustry.gen.Tex;
 import mindustry.net.Administration.TraceInfo;
 import mindustry.ui.dialogs.TraceDialog;
+import uwu.dialogs.admin.ban.BanDialog;
 
 public class CustomTraceDialog extends TraceDialog {
 

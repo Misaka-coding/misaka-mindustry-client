@@ -20,7 +20,6 @@ import mindustry.net.NetConnection;
 import mindustry.net.Packets;
 import mindustry.ui.Styles;
 import mindustry.ui.fragments.PlayerListFragment;
-import uwu.dialogs.admin.BanDialog;
 
 import static mindustry.Vars.*;
 
