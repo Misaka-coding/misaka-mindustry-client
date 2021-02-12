@@ -34,7 +34,6 @@ public class MenuCaller {
         //if(historyEnable){
         //    d.button("Disable History",()->{historyEnable=false;d.hide();showMenuDialog();});
         //}else{d.button("Enable History",()->{historyEnable=true;d.hide();showMenuDialog();});}
-
         d.button("Close", d::hide).row();
         d.show();
     }
