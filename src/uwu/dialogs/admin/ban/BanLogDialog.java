@@ -21,7 +21,7 @@ public class BanLogDialog extends BaseDialog {
             }).row();
         }
         ScrollPane sp = new ScrollPane(nya);
-        buttons.button("@cancel", this::hide);
+        buttons.button("@cancel", this::hide).row();
         this.add(sp);
         keyDown(KeyCode.escape, this::hide);
         keyDown(KeyCode.back, this::hide);
