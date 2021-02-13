@@ -2,6 +2,8 @@ package uwu.dialogs.admin.ban;
 
 import arc.Core;
 import arc.input.KeyCode;
+import arc.scene.ui.ScrollPane;
+import arc.scene.ui.layout.Table;
 import mindustry.Vars;
 import mindustry.gen.Icon;
 import mindustry.gen.Player;
@@ -10,14 +12,17 @@ import uwu.Nya;
 
 public class BanLogDialog extends BaseDialog {
     public BanLogDialog(){
-        super("Ban");
+        super("BanLog");
+        Table nya = new Table();
         for(String s: Nya.bans){
-            buttons.button(s,() -> {
+            nya.button(s,() -> {
                 Vars.ui.showInfoFade("@copied");
                 Core.app.setClipboardText(s);
             }).row();
         }
+        ScrollPane sp = new ScrollPane(nya);
         buttons.button("@cancel", this::hide);
+        this.add(sp);
         keyDown(KeyCode.escape, this::hide);
         keyDown(KeyCode.back, this::hide);
         show();

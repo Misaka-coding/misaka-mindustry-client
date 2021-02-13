@@ -29,12 +29,13 @@ public class MenuCaller {
     }
     public static void showMenuDialog() {
         BaseDialog d = new BaseDialog("Menu");
-        d.button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).row();
-        d.button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
+        d.center().button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).row();
+        d.center().button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
         //if(historyEnable){
         //    d.button("Disable History",()->{historyEnable=false;d.hide();showMenuDialog();});
         //}else{d.button("Enable History",()->{historyEnable=true;d.hide();showMenuDialog();});}
-        d.button("Close", d::hide).row();
+        d.button("Close", d::hide);
+        d.closeOnBack();
         d.show();
     }
 }

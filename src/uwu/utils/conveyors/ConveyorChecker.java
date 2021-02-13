@@ -1,5 +1,7 @@
 package uwu.utils.conveyors;
 
+import arc.scene.ui.ScrollPane;
+import arc.scene.ui.layout.Table;
 import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.ui.dialogs.BaseDialog;
@@ -12,13 +14,15 @@ public class ConveyorChecker {
     public ConveyorChecker() {
         BaseDialog d = new BaseDialog("Conveyor shiza");
         d.center().row();
+        Table table = new Table();
         for (String s : findFakeConveyor().split("\n")) {
             //TODO change method of displaying
-            d.center().button(s, () -> {
+            table.button(s, () -> {
                 new AdvancedInfo(10, 10);
             }).size(250, 50).row();
         }
         d.button("Close", d::hide);
+        d.add(new ScrollPane(table));
         d.closeOnBack();
         d.show();
     }
