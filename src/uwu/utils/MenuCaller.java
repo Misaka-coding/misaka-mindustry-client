@@ -6,6 +6,9 @@ import uwu.utils.conveyors.ConveyorChecker;
 
 import java.util.Date;
 
+import static mindustry.Vars.net;
+import static mindustry.Vars.player;
+
 public class MenuCaller {
     static int x = 0;
     static int y = 0;
@@ -30,7 +33,9 @@ public class MenuCaller {
     public static void showMenuDialog() {
         BaseDialog d = new BaseDialog("Menu");
         d.center().button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).row();
+        if(net.server() || player.admin){
         d.center().button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
+        }
         //if(historyEnable){
         //    d.button("Disable History",()->{historyEnable=false;d.hide();showMenuDialog();});
         //}else{d.button("Enable History",()->{historyEnable=true;d.hide();showMenuDialog();});}
