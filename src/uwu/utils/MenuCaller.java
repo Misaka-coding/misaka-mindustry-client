@@ -36,9 +36,9 @@ public class MenuCaller {
         if(net.server() || player.admin){
         d.center().button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
         }
-        //if(historyEnable){
-        //    d.button("Disable History",()->{historyEnable=false;d.hide();showMenuDialog();});
-        //}else{d.button("Enable History",()->{historyEnable=true;d.hide();showMenuDialog();});}
+        if(historyEnable){
+            d.button("Disable History",()->{historyEnable=false;d.hide();showMenuDialog();});
+        }else{d.button("Enable History",()->{historyEnable=true;d.hide();showMenuDialog();});}
         d.button("Close", d::hide);
         d.closeOnBack();
         d.show();

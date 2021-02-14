@@ -21,10 +21,10 @@ public class Ni {
         });
         Events.on(EventType.BlockBuildEndEvent.class, event -> {
             if (event.breaking) {
-                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.destroy, null));
+                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.destroy, new java.lang.Object()));
             }
             if (!event.breaking) {
-                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.build, null));
+                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.build, new java.lang.Object()));
             }
         });
         Events.on(EventType.ConfigEvent.class, event -> {
