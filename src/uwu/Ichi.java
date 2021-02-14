@@ -12,7 +12,7 @@ import uwu.utils.history.Ni;
 import static mindustry.Vars.ui;
 
 public class Ichi extends Mod {
-    public Ni history;
+    public static Ni history;
     @Override
     public void init() {
         history = new Ni();

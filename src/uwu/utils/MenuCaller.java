@@ -1,8 +1,10 @@
 package uwu.utils;
 
+import mindustry.Vars;
 import mindustry.ui.dialogs.BaseDialog;
 import uwu.dialogs.admin.ban.BanLogDialog;
 import uwu.utils.conveyors.ConveyorChecker;
+import uwu.utils.history.HistoryDialog;
 
 import java.util.Date;
 
@@ -28,6 +30,8 @@ public class MenuCaller {
         if (t < 3) {
             return;
         }
+        if(historyEnable){new HistoryDialog(Vars.world.tile(tx,ty));
+        }
         showMenuDialog();
     }
     public static void showMenuDialog() {
@@ -36,9 +40,7 @@ public class MenuCaller {
         if(net.server() || player.admin){
         d.center().button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
         }
-        if(historyEnable){
-            d.center().button("Disable History",()->{historyEnable=false;d.hide();showMenuDialog();}).size(400f, 50f).row();
-        }else{d.center().button("Enable History",()->{historyEnable=true;d.hide();showMenuDialog();}).size(400f, 50f).row();}
+        d.center().button("Enable History",()->{historyEnable=true;d.hide();}).size(400f, 50f).row();
         d.button("Close", d::hide);
         d.closeOnBack();
         d.show();

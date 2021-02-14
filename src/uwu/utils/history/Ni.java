@@ -57,7 +57,7 @@ public class Ni {
         return null;
     }
 
-    public static ArrayList<HAction> getPlayerHistory(Player player) {
+    public ArrayList<HAction> getPlayerHistory(Player player) {
         ArrayList<HAction> rtn=new ArrayList<>();
         for (Info i : history) {
             for(HAction s:i.history){
