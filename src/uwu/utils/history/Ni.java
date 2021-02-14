@@ -20,15 +20,20 @@ public class Ni {
             history = new ArrayList<>();
         });
         Events.on(EventType.BlockBuildEndEvent.class, event -> {
+            try{
+            if(event.unit==null||event.tile==null||event.tile.block()==null) return;
             if (event.breaking) {
                 addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.destroy, new java.lang.Object()));
             }
             if (!event.breaking) {
                 addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.build, new java.lang.Object()));
-            }
+            }}catch (NullPointerException e){}
         });
         Events.on(EventType.ConfigEvent.class, event -> {
-            addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(),event.tile.tileX(), event.tile.tileY(), event.player.lastReadUnit, Object.config, event.value));
+            try{
+            if(event.player==null||event.tile==null||event.tile.block()==null||event.value==null) return;
+            addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(),event.tile.tileX(), event.tile.tileY(), event.player.unit(), Object.config, event.value));
+        }catch (NullPointerException e){}
         });
     }
 
