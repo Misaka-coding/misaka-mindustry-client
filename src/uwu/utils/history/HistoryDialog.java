@@ -12,6 +12,8 @@ import mindustry.world.Tile;
 import uwu.Ichi;
 import uwu.utils.MenuCaller;
 
+import java.util.ArrayList;
+
 import static mindustry.Vars.net;
 import static mindustry.Vars.player;
 
@@ -26,6 +28,7 @@ public class HistoryDialog extends BaseDialog {
         closeOnBack();
         Table hentai = new Table();
         Ni.Info info = Ichi.history.getHistory(t.x,t.y);
+        if(info!=null&&info.history!=null){
         for(Ni.HAction a : info.history){
             String s = a.player.name;
             if(a.type== Ni.Object.build){
@@ -47,7 +50,7 @@ public class HistoryDialog extends BaseDialog {
                 hentai.button(Icon.zoom,()->{Call.adminRequest(a.player, Packets.AdminAction.trace);});
             }
             hentai.row();
-        }
+        }}
         this.add(new ScrollPane(hentai));
         this.show();
     }
@@ -59,7 +62,9 @@ public class HistoryDialog extends BaseDialog {
         }
         closeOnBack();
         Table hentai = new Table();
-        for(Ni.HAction a : Ichi.history.getPlayerHistory(p)){
+        ArrayList<Ni.HAction> nya = Ichi.history.getPlayerHistory(p);
+        if(nya!=null){
+        for(Ni.HAction a : nya){
             String s = a.x+" "+a.y;
             if(a.type== Ni.Object.build){
                 s+=" build ";
@@ -77,7 +82,7 @@ public class HistoryDialog extends BaseDialog {
             hentai.add(s);
             hentai.button(Icon.zoom,()->{this.hide();new HistoryDialog(Vars.world.tile(a.x,a.y));});
             hentai.row();
-        }
+        }}
         this.add(new ScrollPane(hentai));
         this.show();
     };
