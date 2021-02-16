@@ -9,6 +9,7 @@ import mindustry.world.Tile;
 import uwu.utils.MenuCaller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public class BlockFinder extends BaseDialog {
@@ -17,6 +18,8 @@ public class BlockFinder extends BaseDialog {
 
     public BlockFinder(){
         super("Block Finder");
+        blockers = new ArrayList<>();
+        hentai = new HashSet<>();
         button("Close", this::hide);
         for(int x=0;x< Vars.world.width();x++){
             for(int y=0;y< Vars.world.height();y++){
