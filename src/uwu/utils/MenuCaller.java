@@ -30,7 +30,9 @@ public class MenuCaller {
         if (t < 3) {
             return;
         }
-        if(historyEnable){new HistoryDialog(Vars.world.tile(tx,ty));
+        if(historyEnable){
+            new HistoryDialog(Vars.world.tile(tx,ty));
+            return;
         }
         showMenuDialog();
     }
