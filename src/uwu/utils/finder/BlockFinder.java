@@ -5,8 +5,6 @@ import arc.scene.ui.layout.Table;
 import mindustry.Vars;
 import mindustry.ui.dialogs.BaseDialog;
 import mindustry.world.Block;
-import mindustry.world.Tile;
-import uwu.utils.MenuCaller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,14 +18,15 @@ public class BlockFinder extends BaseDialog {
         super("Block Finder");
         blockers = new ArrayList<>();
         hentai = new HashSet<>();
-        button("Close", this::hide);
-        for(int x=0;x< Vars.world.width();x++){
-            for(int y=0;y< Vars.world.height();y++){
-                if(Vars.world.tile(x,y).block()==null){
+        button("Close", this::hide).row();
+        closeOnBack();
+        for (int x = 0; x < Vars.world.width(); x++) {
+            for (int y = 0; y < Vars.world.height(); y++) {
+                if (Vars.world.tile(x, y).block() == null) {
                     continue;
                 }
-                hentai.add(Vars.world.tile(x,y).block());
-                blockers.add(new Blocker(Vars.world.tile(x,y).block(),x,y));
+                hentai.add(Vars.world.tile(x, y).block());
+                blockers.add(new Blocker(Vars.world.tile(x, y).block(), x, y));
             }
         }
         Table nya = new Table();
@@ -45,13 +44,15 @@ public class BlockFinder extends BaseDialog {
                 baka.add(b);
             }
         }
-        BaseDialog d=new BaseDialog("Traced: " + block.name);
-        d.button("Close", this::hide);
+        BaseDialog d = new BaseDialog("Traced: " + block.name);
+        d.button("Close", d::hide).row();
         Table tbl = new Table();
-        for(Blocker b : baka){
-            tbl.add(b.b.name+" "+b.x+" "+b.y).row();
+        for (Blocker b : baka) {
+            tbl.add(b.b.name + " " + b.x + " " + b.y).row();
         }
         d.add(new ScrollPane(tbl));
+        d.closeOnBack();
+        d.show();
         d.show();
     }
 
