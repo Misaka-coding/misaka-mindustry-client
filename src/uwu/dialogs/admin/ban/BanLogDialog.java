@@ -5,8 +5,6 @@ import arc.input.KeyCode;
 import arc.scene.ui.ScrollPane;
 import arc.scene.ui.layout.Table;
 import mindustry.Vars;
-import mindustry.gen.Icon;
-import mindustry.gen.Player;
 import mindustry.ui.dialogs.BaseDialog;
 import uwu.Nya;
 

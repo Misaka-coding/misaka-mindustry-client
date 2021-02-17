@@ -17,9 +17,7 @@ public class ConveyorChecker {
         Table table = new Table();
         for (String s : findFakeConveyor().split("\n")) {
             //TODO change method of displaying
-            table.button(s, () -> {
-                new AdvancedInfo(10, 10);
-            }).size(250, 50).row();
+            table.button(s, () -> new AdvancedInfo(10, 10)).size(250, 50).row();
         }
         d.button("Close", d::hide).row();
         d.add(new ScrollPane(table));
@@ -48,7 +46,7 @@ public class ConveyorChecker {
                         lineChecker++;
                     }
                     if (lineChecker < 2) {
-                        b.append("at " + x + " " + y + " " + Vars.world.tile(x, y).build.rotation + "\n");
+                        b.append("at ").append(x).append(" ").append(y).append(" ").append(Vars.world.tile(x, y).build.rotation).append("\n");
                     }
                 }
             }

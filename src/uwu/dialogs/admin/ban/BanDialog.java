@@ -30,8 +30,10 @@ public class BanDialog extends BaseDialog{
             Call.sendChatMessage("/ban " + this.target.id + " " + time + " " + reason);
             log(target);
         });
-        buttons.button("Default",()->{Call.adminRequest(this.target, Packets.AdminAction.ban);            log(target);
-        ;});
+        buttons.button("Default", () -> {
+            Call.adminRequest(this.target, Packets.AdminAction.ban);
+            log(target);
+        });
         keyDown(KeyCode.enter, () -> {
             hide();
             Call.sendChatMessage("/ban " + this.target.id + " " + time + " " + reason);

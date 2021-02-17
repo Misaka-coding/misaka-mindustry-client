@@ -11,7 +11,7 @@ import java.util.Date;
 public class MenuCaller {
     static int x = 0;
     static int y = 0;
-    static Long lastTapTime = 0l;
+    static Long lastTapTime = 0L;
     static int t = 0;
     public static boolean historyEnable = false;
 

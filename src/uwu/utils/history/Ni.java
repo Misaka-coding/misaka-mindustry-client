@@ -1,6 +1,7 @@
 package uwu.utils.history;
 
 import arc.Events;
+import arc.util.Log;
 import mindustry.game.EventType;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
@@ -8,32 +9,34 @@ import mindustry.world.Block;
 import mindustry.world.blocks.logic.LogicBlock;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 
 public class Ni {
     public static ArrayList<Info> history = new ArrayList<>();
 
     public Ni() {
-        Events.on(EventType.WorldLoadEvent.class, worldLoadEvent -> {
-            history = new ArrayList<>();
-        });
+        Events.on(EventType.WorldLoadEvent.class, worldLoadEvent -> history = new ArrayList<>());
         Events.on(EventType.BlockBuildEndEvent.class, event -> {
-            try{
-            if(event.unit==null||event.tile==null||event.tile.block()==null) return;
-            if (event.breaking) {
-                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.destroy, new java.lang.Object()));
+            try {
+                if (event.unit == null || event.tile == null || event.tile.block() == null) return;
+                if (event.breaking) {
+                    addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(), event.tile.x, event.tile.y, event.unit, Object.destroy, new java.lang.Object()));
+                }
+                if (!event.breaking) {
+                    addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(), event.tile.x, event.tile.y, event.unit, Object.build, new java.lang.Object()));
+                }
+            } catch (NullPointerException e) {
+                Log.err("ERR");
             }
-            if (!event.breaking) {
-                addAction(event.tile.x, event.tile.y, new HAction(event.tile.block(),event.tile.x, event.tile.y, event.unit, Object.build, new java.lang.Object()));
-            }}catch (NullPointerException e){}
         });
         Events.on(EventType.ConfigEvent.class, event -> {
-            try{
-            if(event.player==null||event.tile==null||event.tile.block()==null||event.value==null) return;
-            addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(),event.tile.tileX(), event.tile.tileY(), event.player.unit(), Object.config, event.value));
-        }catch (NullPointerException e){}
+            try {
+                if (event.player == null || event.tile == null || event.tile.block() == null || event.value == null)
+                    return;
+                addAction(event.tile.tileX(), event.tile.tileY(), new HAction(event.tile.block(), event.tile.tileX(), event.tile.tileY(), event.player.unit(), Object.config, event.value));
+            } catch (NullPointerException e) {
+                Log.err("ERR");
+            }
         });
     }
 
@@ -58,21 +61,22 @@ public class Ni {
     }
 
     public ArrayList<HAction> getPlayerHistory(Player player) {
-        ArrayList<HAction> rtn=new ArrayList<>();
+        ArrayList<HAction> rtn = new ArrayList<>();
         for (Info i : history) {
-            for(HAction s:i.history){
-                if(s.player==player){
+            for (HAction s : i.history) {
+                if (s.player == player) {
                     rtn.add(s);
                 }
             }
         }
-        Collections.sort(rtn, new Comparator<HAction>() {
-            @Override
-            public int compare(HAction o1, HAction o2) {
-                if(o1.date.after(o2.date)){return -1;}
-                if(o1.date.before(o2.date)){return 1;}
-                return 0;
+        rtn.sort((o1, o2) -> {
+            if (o1.date.after(o2.date)) {
+                return -1;
             }
+            if (o1.date.before(o2.date)) {
+                return 1;
+            }
+            return 0;
         });
         return rtn;
     }
@@ -81,7 +85,7 @@ public class Ni {
         build, destroy, config
     }
 
-    public class Info {
+    public static class Info {
         int x;
         int y;
         ArrayList<HAction> history;
@@ -92,7 +96,8 @@ public class Ni {
             history = new ArrayList<>();
         }
     }
-    public class HAction {
+
+    public static class HAction {
         Block block;
         Player player;
         Unit unit;

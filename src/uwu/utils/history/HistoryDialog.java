@@ -18,9 +18,7 @@ import static mindustry.Vars.net;
 import static mindustry.Vars.player;
 
 public class HistoryDialog extends BaseDialog {
-    public HistoryDialog(String title) {
-        super(title);
-    }
+
     public HistoryDialog(Tile t){
         super("Tile history at "+t.x+" "+t.y);
         button("Close", this::hide);

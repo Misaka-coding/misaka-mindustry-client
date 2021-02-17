@@ -57,14 +57,15 @@ public class BlockFinder extends BaseDialog {
     }
 
 
-    public class Blocker{
+    public static class Blocker {
         Block b;
         int x;
         int y;
-        public Blocker(Block b,int x, int y){
-            this.b=b;
-            this.x=x;
-            this.y=y;
+
+        public Blocker(Block b, int x, int y) {
+            this.b = b;
+            this.x = x;
+            this.y = y;
         }
     }
 }
