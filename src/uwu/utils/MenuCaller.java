@@ -2,15 +2,11 @@ package uwu.utils;
 
 import mindustry.Vars;
 import mindustry.ui.dialogs.BaseDialog;
-import uwu.dialogs.admin.ban.BanLogDialog;
 import uwu.utils.conveyors.ConveyorChecker;
 import uwu.utils.finder.BlockFinder;
 import uwu.utils.history.HistoryDialog;
 
 import java.util.Date;
-
-import static mindustry.Vars.net;
-import static mindustry.Vars.player;
 
 public class MenuCaller {
     static int x = 0;
@@ -40,11 +36,16 @@ public class MenuCaller {
     public static void showMenuDialog() {
         BaseDialog d = new BaseDialog("Menu");
         d.button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).row();
-        if(net.server() || player.admin){
-        d.button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
-        }
-        d.button("Enable History",()->{historyEnable=true;d.hide();}).size(400f, 50f).row();
-        d.button("Find Block",()->{new BlockFinder();d.hide();
+//        if(net.server() || player.admin){
+//        d.button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
+//        }
+        d.button("Enable History", () -> {
+            historyEnable = true;
+            d.hide();
+        }).size(400f, 50f).row();
+        d.button("Find Block", () -> {
+            new BlockFinder();
+            d.hide();
         }).size(400f, 50f).row();
         d.button("Close", d::hide);
         d.closeOnBack();
