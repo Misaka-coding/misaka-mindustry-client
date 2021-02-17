@@ -23,7 +23,7 @@ public class BlockFinder extends BaseDialog {
         button("Close", this::hide);
         for(int x=0;x< Vars.world.width();x++){
             for(int y=0;y< Vars.world.height();y++){
-                if(Vars.world.tile(x,y).block()!=null){
+                if(Vars.world.tile(x,y).block()==null){
                     continue;
                 }
                 hentai.add(Vars.world.tile(x,y).block());
