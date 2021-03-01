@@ -54,9 +54,7 @@ public class CPlayerListFragment extends PlayerListFragment{
             cont.table(Tex.buttonTrans, pane -> {
                 pane.label(() -> Core.bundle.format(Groups.player.size() == 1 ? "players.single" : "players", Groups.player.size()));
                 pane.row();
-                sField = pane.field(null, text -> {
-                    rebuild();
-                }).grow().pad(8).get();
+                sField = pane.field(null, text -> rebuild()).grow().pad(8).get();
                 sField.name = "search";
                 sField.setMaxLength(maxNameLength);
                 sField.setMessageText(Core.bundle.format("players.search"));
@@ -160,11 +158,7 @@ public class CPlayerListFragment extends PlayerListFragment{
                 button.add().growY();
 
                 button.button(Icon.hammer, Styles.clearPartiali,
-                              () -> {
-                                  ui.showConfirm("@confirm", Core.bundle.format("confirmvotekick", user.name()), () -> {
-                                      Call.sendChatMessage("/votekick " + user.name());
-                                  });
-                              }).size(h);
+                              () -> ui.showConfirm("@confirm", Core.bundle.format("confirmvotekick", user.name()), () -> Call.sendChatMessage("/votekick " + user.name()))).size(h);
             }
 
             content.add(button).padBottom(-6).width(350f).maxHeight(h + 14);
