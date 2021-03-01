@@ -1,5 +1,6 @@
 package uwu.utils;
 
+import arc.scene.ui.Dialog;
 import mindustry.Vars;
 import mindustry.ui.dialogs.BaseDialog;
 import uwu.utils.conveyors.ConveyorChecker;
@@ -34,7 +35,7 @@ public class MenuCaller {
         showMenuDialog();
     }
     public static void showMenuDialog() {
-        BaseDialog d = new BaseDialog("Menu");
+        Dialog d = new Dialog("Menu");
         d.center().button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).center().row();
 //        if(net.server() || player.admin){
 //        d.button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
