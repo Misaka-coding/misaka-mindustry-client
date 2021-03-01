@@ -35,19 +35,19 @@ public class MenuCaller {
     }
     public static void showMenuDialog() {
         BaseDialog d = new BaseDialog("Menu");
-        d.center().button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).row();
+        d.center().button("Conveyor checker", ConveyorChecker::new).size(400f, 50f).center().row();
 //        if(net.server() || player.admin){
 //        d.button("Bans Log", BanLogDialog::new).size(400f, 50f).row();
 //        }
         d.center().button("Enable History", () -> {
             historyEnable = true;
             d.hide();
-        }).size(400f, 50f).row();
+        }).size(400f, 50f).center().row();
         d.center().button("Find Block", () -> {
             new BlockFinder();
             d.hide();
-        }).size(400f, 50f).row();
-        d.center().button("Close", d::hide);
+        }).size(400f, 50f).center().row();
+        d.center().button("Close", d::hide).center();
         d.closeOnBack();
         d.show();
     }
