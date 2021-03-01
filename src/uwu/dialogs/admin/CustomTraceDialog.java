@@ -9,6 +9,7 @@ import mindustry.gen.Tex;
 import mindustry.net.Administration.TraceInfo;
 import mindustry.ui.dialogs.TraceDialog;
 import uwu.dialogs.admin.ban.BanDialog;
+import uwu.utils.history.HistoryDialog;
 
 public class CustomTraceDialog extends TraceDialog {
 
@@ -49,6 +50,8 @@ public class CustomTraceDialog extends TraceDialog {
         table.button(Icon.hammer, () -> {
             this.hide();
             new BanDialog(player);
+        });
+        table.button(Icon.zoom,()->{this.hide();new HistoryDialog(player);
         });
         table.row();
 
